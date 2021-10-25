@@ -1,0 +1,41 @@
+{% extends 'base.html' %} 
+
+{% block title %} Homepage {% endblock %} 
+
+{% block content %}
+
+<h1>Pets!</h1>
+<div>
+    {% for pet in pets %}
+        <table 
+        background=url({{pet.photo_url}})>
+            <tr>
+                <td>Name: </td>
+                <td>{{pet.name}}</td>
+            </tr>
+            <tr>
+                <td>Species: </td>
+                <td>{{pet.species}}</td>
+            </tr>
+            <tr>
+                <td>Age: </td>
+                <td>{{pet.age}}</td>
+            </tr>
+            <tr>
+                <td>Notes: </td>
+                <td>{{pet.notes}}</td>
+            </tr>
+            <tr>
+                <td>Available: </td>
+                {% if pet.is_available %}
+                <td style="font:bolder; font-size: large;">Yes!</td>
+                {% else %} 
+                <td>No :(</td>
+                {% endif %} 
+            </tr>
+        </table> 
+    <a href="/editPet/{{pet.id}}">Edit Pet Details</a>
+    {% endfor %}
+</div>
+<a href="/newPet">Add Pet</a>
+{% endblock %}
